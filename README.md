@@ -6,7 +6,7 @@ WorkBuddy 全局 skill 收集仓库。把跨机器、跨项目可复用的 skill
 
 | Skill | 说明 |
 |-------|------|
-| `skills/expansive-thinking` | 扩展性思维回答：每次回答围绕主题补充 1-2 个紧密相关的延伸知识，并固定给出「⚠️ 避坑指南」与「🛠 真实项目中的坑」。 |
+| `skills/extended-thinking` | 扩展性思维回答（合并版）：四段合同「核心答案 → 🔗 关联扩展 → ⚠️ 避坑指南 → 🛠 真实坑」，含联想引擎五步法与按领域预置的素材库；真实坑禁止编造第一人称经历。 |
 
 ## 安装到本机
 
@@ -14,13 +14,16 @@ WorkBuddy 全局 skill 收集仓库。把跨机器、跨项目可复用的 skill
 
 ```bash
 # Windows（PowerShell / Git Bash）
-cp -r skills/expansive-thinking "$HOME/.workbuddy/skills/"
+cp -r skills/extended-thinking "$HOME/.workbuddy/skills/"
 
 # macOS / Linux
-cp -r skills/expansive-thinking ~/.workbuddy/skills/
+cp -r skills/extended-thinking ~/.workbuddy/skills/
+
+# Qoder（用户级全局目录）
+cp -r skills/extended-thinking "$HOME/.qoder-cn/skills/"
 ```
 
-复制后无需重启，下一轮对话即生效（WorkBuddy 会自动发现 `~/.workbuddy/skills/` 下的技能）。
+复制后 WorkBuddy 无需重启，下一轮对话即生效（会自动发现 `~/.workbuddy/skills/` 下的技能）；Qoder 需重启会话或执行 `/skills reload`。
 
 ## 目录约定
 
