@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 本技能接收当前对话上下文与代码库理解，产出一份规格说明。不要访谈用户；只需综合你已经知道的内容。
 
-问题追踪器与分诊标签词汇本应已提供给你。如果没有，请告诉用户去运行 `/setup-matt-pocock-skills`。
+问题追踪器与分诊标签词汇本应已提供给你。如果没有，请告诉用户去运行 `/setup-matt-pocock-skills-zh`。
 
 ## 流程
 

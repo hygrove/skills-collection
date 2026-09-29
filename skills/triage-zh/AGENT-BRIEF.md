@@ -22,7 +22,7 @@ issue 可能在 `ready-for-agent` 里一待就是几天或几周。代码库会�
 
 - **好：** "`SkillConfig` 类型应当接受一个可选的、类型为 `CronExpression` 的 `schedule` 字段"
 - **坏：** "打开 src/types/skill.ts，在第 42 行加一个 schedule 字段"
-- **好：** "当用户不带参数运行 `/triage` 时，他们应当看到一个需要关注的 issue 摘要"
+- **好：** "当用户不带参数运行 `/triage-zh` 时，他们应当看到一个需要关注的 issue 摘要"
 - **坏：** "在主处理函数里加一个 switch 语句"
 
 ### 完整的验收标准（Complete acceptance criteria）
@@ -147,7 +147,7 @@ agent 需要知道何时算完成。每份 agent 简报都必须有具体的、�
 ## Agent Brief
 
 **Category:** enhancement
-**Summary:** 完成贡献者的 `triage list` 的 `--json` 输出标志
+**Summary:** 完成贡献者的 `triage-zh list` 的 `--json` 输出标志
 
 **Current behavior:**
 该 PR 添加了一个把 issue 列表序列化为 JSON 的 `--json` 标志。happy path 可用，
@@ -164,7 +164,7 @@ agent 需要知道何时算完成。每份 agent 简报都必须有具体的、�
 - 复用 PR 已经添加的现有序列化器；不要引入第二个
 
 **Acceptance criteria:**
-- [ ] `triage list --json` 对成功与错误两种情况都发出合法 JSON
+- [ ] `triage-zh list --json` 对成功与错误两种情况都发出合法 JSON
 - [ ] 退出码与无 JSON 的命令一致
 - [ ] 一个测试覆盖 `--json` 的成功输出与一处错误情形
 - [ ] 默认（无 JSON）输出逐字节不变
@@ -186,7 +186,7 @@ agent 需要知道何时算完成。每份 agent 简报都必须有具体的、�
 第 150 行附近的函数有问题。
 
 **Files to change:**
-- src/triage/handler.ts (line 150)
+- src/triage-zh/handler.ts (line 150)
 - src/types.ts (line 42)
 ```
 

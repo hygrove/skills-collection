@@ -4,4 +4,4 @@ description: 一场毫不留情的访谈，用来打磨计划或设计，同时�
 disable-model-invocation: true
 ---
 
-调用 Skill 工具两次，分别传入 "grilling" 和 "domain-modeling"。
+调用 Skill 工具两次，分别传入 "grilling-zh" 和 "domain-modeling-zh"。

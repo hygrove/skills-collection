@@ -20,10 +20,10 @@
 
 ## 寻路操作（Wayfinding operations）
 
-由 `/wayfinder` 使用。**地图（map）** 是一个文件，每个工单一个**子**文件。
+由 `/wayfinder-zh` 使用。**地图（map）** 是一个文件，每个工单一个**子**文件。
 
 - **地图（Map）**：`.scratch/<effort>/map.md`（Notes / Decisions-so-far / Fog 正文）。
-- **子工单（Child ticket）**：`.scratch/<effort>/issues/NN-<slug>.md`，从 `01` 起编号，问题在正文里。一个 `Type:` 行记录工单类型（`research`/`prototype`/`grilling`/`task`）；一个 `Status:` 行记录 `claimed`/`resolved`。
+- **子工单（Child ticket）**：`.scratch/<effort>/issues/NN-<slug>.md`，从 `01` 起编号，问题在正文里。一个 `Type:` 行记录工单类型（`research-zh`/`prototype-zh`/`grilling-zh`/`task`）；一个 `Status:` 行记录 `claimed`/`resolved`。
 - **阻塞（Blocking）**：顶部附近的一行 `Blocked by: NN, NN`。一张工单在其列出的每个文件都 `resolved` 时即解除阻塞。
 - **前沿（Frontier）**：扫描 `.scratch/<effort>/issues/` 找那些开放、未阻塞、未认领的文件；按编号第一个胜出。
 - **认领（Claim）**：在任何工作之前设置 `Status: claimed` 并保存。

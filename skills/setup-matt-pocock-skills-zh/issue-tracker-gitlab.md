@@ -14,9 +14,9 @@
 
 从 `git remote -v` 推断仓库；在 clone 内部运行时 `glab` 自动推断。
 
-## 把合并请求当作分诊面（Merge requests as a triage surface）
+## 把合并请求当作分诊面（Merge requests as a triage-zh surface）
 
-**MRs as a request surface（MR 作为请求入口）：no（否）。** _（若本仓库把外部合并请求当作功能请求，改为 `yes`；`/triage` 会读取这个标志。）_
+**MRs as a request surface（MR 作为请求入口）：no（否）。** _（若本仓库把外部合并请求当作功能请求，改为 `yes`；`/triage-zh` 会读取这个标志。）_
 
 当设为 `yes` 时，MR 跑与 issue 同样的标签和状态，使用 `glab mr` 的等价命令：
 
@@ -36,10 +36,10 @@
 
 ## 寻路操作（Wayfinding operations）
 
-由 `/wayfinder` 使用。**地图（map）** 是一个带**子** issue 作为工单的单一 issue。
+由 `/wayfinder-zh` 使用。**地图（map）** 是一个带**子** issue 作为工单的单一 issue。
 
-- **地图（Map）**：一个带 `wayfinder:map` 标签的单一 issue，装着 Notes / Decisions-so-far / Fog 正文。`glab issue create --label wayfinder:map`。（在提供原生 epics 的 GitLab 套餐层级上，一个 epic 也可以承载地图；一个带标签的 issue 在哪都行。）
-- **子工单（Child ticket）**：一个在描述顶部带着 `Part of #<map>`、并带 `wayfinder:<type>`（`research`/`prototype`/`grilling`/`task`）标签的 issue。一旦被认领，工单被指派给驱动的开发者。
+- **地图（Map）**：一个带 `wayfinder-zh:map` 标签的单一 issue，装着 Notes / Decisions-so-far / Fog 正文。`glab issue create --label wayfinder-zh:map`。（在提供原生 epics 的 GitLab 套餐层级上，一个 epic 也可以承载地图；一个带标签的 issue 在哪都行。）
+- **子工单（Child ticket）**：一个在描述顶部带着 `Part of #<map>`、并带 `wayfinder-zh:<type>`（`research-zh`/`prototype-zh`/`grilling-zh`/`task`）标签的 issue。一旦被认领，工单被指派给驱动的开发者。
 - **阻塞（Blocking）**：GitLab 的**原生阻塞链接**，即规范、在 UI 上可见的表示。用 `/blocked_by #<n>` 快捷动作添加，作为一个 note 发布（`glab issue note <child> --message "/blocked_by #<blocker>"`）。原生阻塞链接是 Premium/Ultimate 功能；在免费层级（或不可用时）退回到描述顶部的 `Blocked by: #<n>, #<n>` 一行。一张工单在其每个阻塞者都关闭时即解除阻塞。
 - **前沿查询（Frontier query）**：`glab issue list -F json` 限定在地图的子项内，丢弃任何有未关闭阻塞者：一个指向未关闭 issue 的原生 `blocked_by` 链接（`glab api projects/:id/issues/:iid/links`），或 `Blocked by` 行里有一个未关闭 issue，或有一个指派者；地图顺序中第一个胜出。
 - **认领（Claim）**：`glab issue update <n> --assignee @me`，这是会话的第一次写入。

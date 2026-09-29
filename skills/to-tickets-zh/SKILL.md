@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 把一份计划、规格说明或对话拆解为一组**工单（tickets）**：垂直切片的示踪子弹，每张都声明**阻塞**它的其它工单。
 
-问题追踪器与分诊标签词汇本应已提供给你。如果没有，请告诉用户去运行 `/setup-matt-pocock-skills`。
+问题追踪器与分诊标签词汇本应已提供给你。如果没有，请告诉用户去运行 `/setup-matt-pocock-skills-zh`。
 
 ## 流程
 
@@ -57,7 +57,7 @@ disable-model-invocation: true
 
 ### 5. 把工单发布到配置好的追踪器
 
-发布已批准的工单。**如何发布**取决于 `/setup-matt-pocock-skills` 配置的追踪器；工单本身两边一致，只有阻塞边的形态会变：
+发布已批准的工单。**如何发布**取决于 `/setup-matt-pocock-skills-zh` 配置的追踪器；工单本身两边一致，只有阻塞边的形态会变：
 
 - **本地文件** → 在 `.scratch/<feature-slug>/issues/<NN>-<slug>.md` 下为每张工单写一个文件，从 `01` 起按依赖顺序编号（阻塞项在前）。每个文件的"Blocked by"列出它所依赖的编号/标题。使用下面的每张工单文件模板：一张工单一个文件，绝不用单个合并文件。
 - **真实问题追踪器（GitHub、Linear 等）** → 按依赖顺序（阻塞项在前）每张工单发布一个 issue，以便每张工单的阻塞边能引用真实标识符。若该平台有原生阻塞/子issue关系就用它；否则把每张工单的"Blocked by"设为那些阻塞它的 issue。除非另有指示，打上 `ready-for-agent` 分诊标签；这些工单在构造上就是可被 agent 拾取的。

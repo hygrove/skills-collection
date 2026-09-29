@@ -10,7 +10,7 @@ disable-model-invocation: true
 
 本命令以项目的领域模型为背景，建立在共享的设计词汇之上：
 
-- 调用 Skill 工具并传入 "codebase-design"，以获取架构词汇（**module 模块**、**interface 接口**、**depth 深度**、**seam 接缝**、**adapter 适配器**、**leverage 杠杆**、**locality 局部性**）及其原则（删除测试、"接口即测试面"、"一个适配器=假设性接缝，两个=真实接缝"）。在每一条建议中都精确使用这些术语，不要漂移到"component 组件""service 服务""API""boundary 边界"等说法。
+- 调用 Skill 工具并传入 "codebase-design-zh"，以获取架构词汇（**module 模块**、**interface 接口**、**depth 深度**、**seam 接缝**、**adapter 适配器**、**leverage 杠杆**、**locality 局部性**）及其原则（删除测试、"接口即测试面"、"一个适配器=假设性接缝，两个=真实接缝"）。在每一条建议中都精确使用这些术语，不要漂移到"component 组件""service 服务""API""boundary 边界"等说法。
 - `CONTEXT.md` 中的领域语言为好的"接缝"提供命名；`docs/adr/` 中的 ADR 记录了本命令不应重新讨论的决策。
 
 ## 流程
@@ -51,7 +51,7 @@ disable-model-invocation: true
 
 报告末尾给出 **Top recommendation 首要推荐** 部分：你会先处理哪个候选方案，以及为什么。
 
-**领域用 `CONTEXT.md` 的词汇，架构用 `/codebase-design` 的词汇。** 如果 `CONTEXT.md` 定义了"Order"，就谈"订单受理模块"，而不是"FooBarHandler"，也不是"Order 服务"。
+**领域用 `CONTEXT.md` 的词汇，架构用 `/codebase-design-zh` 的词汇。** 如果 `CONTEXT.md` 定义了"Order"，就谈"订单受理模块"，而不是"FooBarHandler"，也不是"Order 服务"。
 
 **ADR 冲突**：如果某个候选方案与现有 ADR 相矛盾，只有在摩擦真实到值得重新审视该 ADR 时才把它摆出来。在卡片中清晰标注（例如一个警告提示框：_"与 ADR-0007 相矛盾，但值得重开，因为……"_）。不要列出 ADR 禁止的每一个理论上的重构。
 
@@ -61,11 +61,11 @@ disable-model-invocation: true
 
 ### 3. 诘问循环（Grilling loop）
 
-用户选中某个候选方案后，调用 Skill 工具并传入 "grilling"，陪他们走一遍决策树：约束、依赖、加深后模块的形态、接缝背后是什么、哪些测试能存活下来。
+用户选中某个候选方案后，调用 Skill 工具并传入 "grilling-zh"，陪他们走一遍决策树：约束、依赖、加深后模块的形态、接缝背后是什么、哪些测试能存活下来。
 
-随着决策成型，副作用就地发生；调用 Skill 工具并传入 "domain-modeling"，让领域模型在过程中保持最新：
+随着决策成型，副作用就地发生；调用 Skill 工具并传入 "domain-modeling-zh"，让领域模型在过程中保持最新：
 
 - **要把一个不在 `CONTEXT.md` 中的概念作为加深模块来命名？** 把该术语加入 `CONTEXT.md`。如果文件不存在就惰性创建。
 - **在对话中打磨了一个模糊术语？** 就地更新 `CONTEXT.md`。
 - **用户基于一个承重（load-bearing）的理由否决了候选方案？** 提议一份 ADR，措辞为：_"要我把这个记录成 ADR，好让未来的架构评审不再重复提议它吗？"_ 仅当这个理由确实会被未来探索者需要、以避免重复提议同样的东西时才提议；跳过临时性的理由（"现在不值当"）和不言自明的理由。
-- **想探索加深模块的其他接口方案？** 调用 Skill 工具并传入 "codebase-design"，使用其"设计两次（design-it-twice）"的并行子代理模式。
+- **想探索加深模块的其他接口方案？** 调用 Skill 工具并传入 "codebase-design-zh"，使用其"设计两次（design-it-twice）"的并行子代理模式。

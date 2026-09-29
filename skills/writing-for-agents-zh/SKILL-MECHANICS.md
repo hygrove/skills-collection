@@ -1,6 +1,6 @@
 # 技能机制（Skill mechanics）
 
-[`writing-for-agents`](SKILL.md) 中技能专属的分支：当文档是一个技能时（frontmatter、调用选择、路由型技能）有什么变化。关于写它的其它一切，都是 `SKILL.md` 里的通用参考。
+[`writing-for-agents-zh`](SKILL.md) 中技能专属的分支：当文档是一个技能时（frontmatter、调用选择、路由型技能）有什么变化。关于写它的其它一切，都是 `SKILL.md` 里的通用参考。
 
 ## 调用（Invocation）
 

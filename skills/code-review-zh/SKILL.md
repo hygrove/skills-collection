@@ -10,7 +10,7 @@ description: "对某个固定点（commit、分支、tag 或 merge-base）以来
 
 两个轴以**并行子 agent** 运行，互不污染对方上下文，最后由本技能汇总它们的发现。
 
-issue 追踪器应当已经提供给你。如果 `docs/agents/issue-tracker.md` 缺失，请告诉用户去运行 `/setup-matt-pocock-skills`。
+issue 追踪器应当已经提供给你。如果 `docs/agents/issue-tracker.md` 缺失，请告诉用户去运行 `/setup-matt-pocock-skills-zh`。
 
 ## 流程
 
