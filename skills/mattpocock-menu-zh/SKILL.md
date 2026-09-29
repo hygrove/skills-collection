@@ -15,8 +15,8 @@ argument-hint: "你要做什么？（可选）"
 
 ## ✋ 用户主动召唤（必须点名才会跑）
 
-- **ask-matt-zh** —— 就某个 TS/工程问题"请教" Matt Pocock 的意见/风格。触发："ask matt…"、"Matt 会怎么写 X"。
-- **grill-me-zh** —— 严酷拷问用户，压力测试一个想法/方案/理解。触发："grill me"、"拷问我"、"挑战我的方案"、"test my understanding"。
+- **ask-matt-zh** —— 按你当前的处境/流程，推荐该走哪条技能路线（与 `mattpocock-menu-zh` 互补：它按**流程阶段**推荐，本菜单按**技能清单**推荐）。触发："ask matt…"、"该用哪个技能"、"接下来做什么"。
+- **grill-me-zh** —— 毫不留情地诘问（grill）用户，压力测试一个想法/方案/理解。触发："grill me"、"拷问我"、"挑战我的方案"、"test my understanding"。
 - **grill-with-docs-zh** —— 同 grill-me-zh，但边问边产出 ADR 和词汇表。触发："边问边出文档"、"grill 并记录"。
 - **handoff-zh** —— 把对话压缩成交接文档，交给另一个 agent。触发："handoff-zh"、"写个交接文档"。
 - **implement-zh** —— 按规格说明或工单实现代码。触发："/implement-zh"、"实现这个 spec"。
