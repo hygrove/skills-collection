@@ -2,7 +2,7 @@
 
 学习记录住在 `./learning-records/`，使用顺序编号：`0001-slug.md`、`0002-slug.md` 等。惰性创建目录：只在写入第一条记录时才建。
 
-它们是教学界对 ADR 的等价物：捕获非显而易见的教训、关键洞察，以及会引导未来会话的、已陈述的先验知识。它们被用来计算近端发展区（zone of proximal development）。
+它们是教学界对 ADR 的等价物：捕获非显而易见的教训、关键洞察，以及会引导未来会话的、已陈述的先验知识。它们被用来计算最近发展区（zone of proximal development）。
 
 ## 模板（Template）
 

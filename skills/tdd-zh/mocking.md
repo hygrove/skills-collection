@@ -1,33 +1,33 @@
-# 何时打桩（When to Mock）
+# 何时 mock（When to Mock）
 
-只在**系统边界（system boundaries）**处打桩：
+只在**系统边界（system boundaries）**处 mock：
 
 - 外部 API（支付、邮件等）
 - 数据库（有时——优先用测试库）
 - 时间 / 随机性
 - 文件系统（有时）
 
-不要打桩：
+不要 mock：
 
 - 你自己的类 / 模块
 - 内部协作者
 - 任何你掌控的东西
 
-## 为可打桩性而设计（Designing for Mockability）
+## 为可 mock 性而设计（Designing for Mockability）
 
-在系统边界处，设计易于打桩的接口：
+在系统边界处，设计易于 mock 的接口：
 
 **1. 使用依赖注入（dependency injection）**
 
 把外部依赖传进来，而不是在内部创建它们：
 
 ```typescript
-// 易于打桩
+// 易于 mock
 function processPayment(order, paymentClient) {
   return paymentClient.charge(order.total);
 }
 
-// 难以打桩
+// 难以 mock
 function processPayment(order) {
   const client = new StripeClient(process.env.STRIPE_KEY);
   return client.charge(order.total);
@@ -39,14 +39,14 @@ function processPayment(order) {
 为每个外部操作创建特定函数，而非一个带条件逻辑的通用函数：
 
 ```typescript
-// 好：每个函数都可独立打桩
+// 好：每个函数都可独立 mock
 const api = {
   getUser: (id) => fetch(`/users/${id}`),
   getOrders: (userId) => fetch(`/users/${userId}/orders`),
   createOrder: (data) => fetch('/orders', { method: 'POST', body: data }),
 };
 
-// 坏：打桩需要在 mock 内部写条件逻辑
+// 坏：要 mock 它，就得在 mock 内部写条件逻辑
 const api = {
   fetch: (endpoint, options) => fetch(endpoint, options),
 };

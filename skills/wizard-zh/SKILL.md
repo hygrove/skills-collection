@@ -1,6 +1,6 @@
 ---
 name: wizard-zh
-description: 生成一个交互式 bash 向导，引导人类一步步走过只有他们能执行的操作。用于配置基础设施、设置凭据或 CI 密钥、走查陌生的第三方仪表盘，或运行一次性的迁移或切换。不要为 agent 自己能执行的步骤调用它。
+description: 生成一个交互式 bash 向导，引导人类一步步走过只有他们能执行的操作。用于配置基础设施（provision infrastructure）、设置凭据或 CI 密钥（credentials / CI secrets）、在陌生的第三方控制台里一步步带路（walk an unfamiliar dashboard），或运行一次性的迁移或切换（migration / cutover）。不要为 agent 自己能执行的步骤调用它。
 ---
 
 # 向导（Wizard）
@@ -15,7 +15,7 @@ description: 生成一个交互式 bash 向导，引导人类一步步走过只�
 
 ### 1. 界定流程（Scope the procedure）
 
-理清人类必须采取的每个手工步骤，以及沿途捕获的每个值。先读仓库，不要冷冰冰地问：
+理清人类必须采取的每个手工步骤，以及沿途捕获的每个值。先读仓库，别在毫无上下文的情况下空口提问：
 
 - 对于设置：`.env`、`.env.example`、`.env.*`、`README`、`docker-compose*`、框架配置，以及 `.github/workflows/*`（每个 `secrets.*` / `vars.*` 引用都是向导必须产出的一个值）。
 - 对于迁移或切换：当前状态、目标状态，以及两者之间不可逆的操作。

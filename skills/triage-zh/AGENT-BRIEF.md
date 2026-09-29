@@ -44,25 +44,25 @@ agent 需要知道何时算完成。每份 agent 简报都必须有具体的、�
 **Category:** bug / enhancement
 **Summary:** 关于需要发生什么的一句话描述
 
-**Current behavior（当前行为）:**
+**Current behavior:**
 描述现在发生什么。对 bug，这就是坏掉的行为。
 对 enhancement，这是该 feature 所依托的现状。
 
-**Desired behavior（期望行为）:**
+**Desired behavior:**
 描述 agent 工作完成后应当发生什么。
 对边界情形和错误条件要具体。
 
-**Key interfaces（关键接口）:**
+**Key interfaces:**
 - `TypeName`：需要改什么、为什么
 - `functionName()` 返回类型：当前返回什么 vs 应当返回什么
 - 配置形态：任何需要的新配置项
 
-**Acceptance criteria（验收标准）:**
+**Acceptance criteria:**
 - [ ] 具体、可测试的标准 1
 - [ ] 具体、可测试的标准 2
 - [ ] 具体、可测试的标准 3
 
-**Out of scope（不在范围）:**
+**Out of scope:**
 - 在这个 issue 里不应被改动或处理的事
 - 可能看似相关、但实则独立的功能
 ```

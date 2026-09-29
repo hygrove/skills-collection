@@ -11,15 +11,15 @@
 
 **Order 订单**：
 {对该术语的一两句描述}
-_避免（Avoid）_：Purchase、transaction
+_Avoid_：Purchase、transaction
 
 **Invoice 发票**：
 交付后发给客户的一份付款请求。
-_避免（Avoid）_：Bill、payment request
+_Avoid_：Bill、payment request
 
 **Customer 客户**：
 下单的个人或组织。
-_避免（Avoid）_：Client、buyer、account
+_Avoid_：Client、buyer、account
 ```
 
 ## 规则

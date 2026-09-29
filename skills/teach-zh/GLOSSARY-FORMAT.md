@@ -13,15 +13,15 @@
 
 **Hypertrophy（肥大）**:
 由机械张力与代谢压力在反复训练课中驱动的肌肉生长。
-_避免（Avoid）_：Bulking、getting big
+_Avoid_：Bulking、getting big
 
 **Progressive overload（渐进超负荷）**:
 随时间系统化地增加肌肉的负担，经由负荷、容量或强度。
-_避免（Avoid）_：Pushing harder、levelling up
+_Avoid_：Pushing harder、levelling up
 
 **RPE（自觉用力程度 Rate of Perceived Exertion）**:
 对一组感觉有多难的 1–10 自评，其中 10 是力竭、8 表示还余两次。
-_避免（Avoid）_：Effort score、intensity rating
+_Avoid_：Effort score、intensity rating
 ```
 
 ## 规则（Rules）

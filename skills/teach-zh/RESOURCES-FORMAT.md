@@ -7,14 +7,14 @@
 ```md
 # {主题} Resources
 
-## Knowledge（知识）
+## Knowledge 知识
 
-- [书籍：Zatsiorsky & Kraemer 的《力量训练的科学与实践》](https://example.com)
+- [书籍：_The Science and Practice of Strength Training_，Zatsiorsky & Kraemer 著（《力量训练的科学与实践》）](https://example.com)
   关于编程与适应的奠基性文本。用于：任何与周期化、恢复、强度区间有关的事。
-- [文章：Greg Nuckols（Stronger By Science）的"我该练多少？"](https://example.com)
+- [文章："How Much Should I Train?"，Greg Nuckols（Stronger By Science）（《我该练多少？》）](https://example.com)
   关于容量里程碑的循证综述。用于：每个肌群每周的组数目标。
 
-## Wisdom（智慧，社区）
+## Wisdom 智慧
 
 - [r/weightroom](https://reddit.com/r/weightroom)
   高信噪比的子版块，对抗 bro-science 而受版主管理。用于：计划批评、平台期排障。
@@ -25,7 +25,7 @@
 ## 规则（Rules）
 
 - **仅限高信任。** 优先一手来源、公认的专家、同行评审的工作，以及有强力版主管理的社区。如果一个资源是披着教育外衣的营销，就排除它。
-- **给每个条目加注解。** 一个光秃秃的链接三个月后毫无用处。加一行：它覆盖什么、何时去够它。
+- **给每个条目加注解。** 一个孤零零的链接三个月后毫无用处。加一行：它覆盖什么、何时该取用。
 - **按 Knowledge / Wisdom 分组。** 呼应 [SKILL.md](./SKILL.md) 里的哲学。一个资源只出现在一组里也完全没问题。
 - **显式暴露缺口。** 如果使命需要、却没有好的资源覆盖某个领域，写一个 `## Gaps` 段落，列出缺什么。这驱动未来的搜索。
 - **毫不留情地修剪。** 一个被证明是错的、浅的或偏离使命的资源，应当被移除，而非埋起来。五个锐利的来源胜过三十个平庸的。

@@ -1,6 +1,6 @@
 ---
 name: codebase-design-zh
-description: 设计深模块（deep modules）的共享词汇表。当用户想设计或改进一个模块的接口、寻找"深化"机会、决定接缝放哪、让代码更可测或更利于 AI 导航，或别的技能需要这套深模块词汇时使用。
+description: 设计深模块（deep module）的共享词汇表。当用户想设计或改进一个模块的接口（interface）、寻找加深（deepening）机会、决定接缝（seam）放哪、让代码更可测或更利于 AI 导航（testable / AI-navigable），或别的技能需要这套深模块词汇时使用。
 ---
 
 # 代码库设计（Codebase Design）
@@ -110,5 +110,5 @@ description: 设计深模块（deep modules）的共享词汇表。当用户想�
 
 ## 更深入
 
-- **给定一个依赖簇、把它深化**，见 [DEEPENING.md](DEEPENING.md)：依赖分类、接缝纪律、以及"替换而非分层"的测试法。
-- **探索替代接口**，见 [DESIGN-IT-TWICE.md](DESIGN-IT-TWICE.md)：起多个并行子 agent，用几种 radically 不同的方式设计接口，再在深度、局部性、接缝位置上做比较。
+- **给定一个依赖簇、把它加深**，见 [DEEPENING.md](DEEPENING.md)：依赖分类、接缝纪律、以及"替换而非分层"的测试法。
+- **探索替代接口**，见 [DESIGN-IT-TWICE.md](DESIGN-IT-TWICE.md)：起多个并行子代理，用几种截然不同的方式设计接口，再在深度、局部性、接缝位置上做比较。

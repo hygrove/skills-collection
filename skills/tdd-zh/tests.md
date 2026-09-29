@@ -37,7 +37,7 @@ test("checkout calls paymentService.process", async () => {
 
 危险信号：
 
-- 打桩内部协作者
+- mock 内部协作者
 - 测试私有方法
 - 断言调用次数 / 顺序
 - 重构（行为未变）时测试就坏

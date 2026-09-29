@@ -1,6 +1,6 @@
 ---
 name: domain-modeling-zh
-description: 构建并打磨项目的领域模型。当讨论代码库术语、编写或编辑 CONTEXT.md，或记录/修改 ADR 时使用。
+description: 构建并打磨项目的领域模型（domain model）。当讨论代码库术语（terminology）、编写或编辑 CONTEXT.md，或记录/修改 ADR（architecture decision record）时使用。
 ---
 
 # 领域建模（Domain Modeling）

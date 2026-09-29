@@ -39,7 +39,7 @@
 
 ## 候选卡片（Candidate card）
 
-图表演重头戏。散文稀疏、平实，不事修饰地使用词汇表术语（来自 `/codebase-design-zh` 技能）。
+重头戏在图表上。行文稀疏、平实，不事修饰地使用词汇表术语（来自 `/codebase-design-zh` 技能）。
 
 每个候选方案是一个 `<article>`：
 
@@ -120,4 +120,4 @@
 
 **收益要点**用词汇表术语点出收益：*"locality: bugs concentrate in one module"*、*"leverage: one interface, N call sites"*、*"interface shrinks; implementation absorbs the wrappers"*。不要写 *"easier to maintain"* 或 *"cleaner code"*，因为这些词不在词汇表里，不配占位。
 
-不要含糊其辞、不要清嗓子、不要"值得一提的是……"。如果一句话能变成要点，就把它变成要点。如果一个要点可被删掉，就删掉它。如果一个术语不在 `/codebase-design-zh` 词汇表里，在发明新词之前先去够一个已有的。
+不要含糊其辞、不要清嗓子、不要"值得一提的是……"。如果一句话能变成要点，就把它变成要点。如果一个要点可被删掉，就删掉它。如果一个术语不在 `/codebase-design-zh` 词汇表里，在发明新词之前先借用一个已有的。

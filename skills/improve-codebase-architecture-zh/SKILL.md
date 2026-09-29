@@ -47,7 +47,7 @@ disable-model-invocation: true
 - **Solution 解决方案**：用大白话描述会改变什么
 - **Benefits 收益**：用局部性和杠杆来解释，以及测试会如何改善
 - **Before / After diagram 前后对比图**：并排、手绘，说明"浅"与"加深后"
-- **Recommendation strength 推荐强度**：`Strong 强烈推荐`、`Worth exploring 值得探索`、`Speculative 推测性` 之一，以徽章形式呈现
+- **Recommendation strength 推荐强度**：取值 `Strong`（强烈推荐）、`Worth exploring`（值得探索）、`Speculative`（推测性）之一，渲染成徽章
 
 报告末尾给出 **Top recommendation 首要推荐** 部分：你会先处理哪个候选方案，以及为什么。
 

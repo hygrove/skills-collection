@@ -1,6 +1,6 @@
 ---
 name: diagnosing-bugs-zh
-description: 针对难啃 bug 与性能回归的诊断循环。当用户说"诊断/调试一下这个"、或报告某东西坏了/报错/失败/变慢时使用。
+description: 针对难啃 bug 与性能回归的诊断循环。当用户说 "diagnose"、"debug this"、"诊断/调试一下这个"，或报告某东西坏了/报错/失败/变慢（broken / throwing / failing / slow）时使用。
 ---
 
 # 诊断 Bug（Diagnosing Bugs）
