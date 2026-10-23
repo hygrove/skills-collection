@@ -28,6 +28,7 @@
 | 技能名 | 干嘛用的 |
 |--------|----------|
 | `extended-thinking` | 扩展性思维回答风格：先给核心答案，再延伸关联知识点、给避坑指南和真实坑提醒。 |
+| `vs-dep` | 开发/生产启动配置生成器：自动探测技术栈，产出 dev.ps1 + .vscode 配置（打开项目自启）+ 生产一键启动脚本。 |
 
 > 这是**你自己写的**，和下面那套"别人家的"严格分开，互不影响。
 
@@ -136,6 +137,7 @@ cp -r skills/extended-thinking "$HOME/.workbuddy/skills/"
 | 技能名 | 说明 |
 |--------|------|
 | `extended-thinking` | 扩展性思维回答：核心答案 → 关联扩展 → 避坑指南 → 真实坑。 |
+| `vs-dep` | 开发/生产启动配置生成器：探测技术栈 → 生成 dev.ps1 + .vscode（folderOpen 自启）+ 生产一键脚本。 |
 
 ### Matt Pocock 技能集 · 自动触发（11 个，场景对上 AI 自己跑）
 
@@ -181,6 +183,7 @@ skills-collection/
 ├── README.md                 # 你正在看的说明
 └── skills/                   # 所有技能都在这个文件夹里
     ├── extended-thinking/    # 【你自己的】扩展性思维技能
+    ├── vs-dep/               # 【你自己的】开发/生产启动配置生成器
     ├── grill-me/             # Matt 技能 · 英文
     ├── grill-me-zh/          # Matt 技能 · 中文（带 -zh 后缀）
     ├── ...（其余 23 个 Matt 技能的中英两套）

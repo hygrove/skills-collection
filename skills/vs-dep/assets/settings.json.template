@@ -1,0 +1,12 @@
+{
+  "terminal.integrated.profiles.windows": {
+    "🚀 {{SERVICE_NAME}} Dev Server": {
+      "source": "PowerShell",
+      "args": [
+        "-NoExit",
+        "-ExecutionPolicy", "RemoteSigned",
+        "-File", "${workspaceFolder}/scripts/dev.ps1"
+      ]
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start Backend ({{SERVICE_NAME}})",
+      "type": "shell",
+      "command": "{{BACKEND_CMD}}",
+      "args": {{BACKEND_ARGS}},
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": { "PYTHONUNBUFFERED": "1" }
+      },
+      "isBackground": true,
+      "runOn": "folderOpen",
+      "problemMatcher": {{BACKEND_PROBLEM_MATCHER}},
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "group": "dev"
+      },
+      "detail": "Backend ({{SERVICE_NAME}}) on :{{BACKEND_PORT}}, auto-start on folder open"
+    },
+    {
+      "label": "Start Frontend ({{SERVICE_NAME}})",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "dev"],
+      "options": {
+        "cwd": "${workspaceFolder}/{{FRONTEND_DIR}}"
+      },
+      "isBackground": true,
+      "runOn": "folderOpen",
+      "problemMatcher": {
+        "pattern": [
+          { "regexp": "Local:\\s+(http://[0-9a-zA-Z.:/\\[\\]]+)", "message": 1 }
+        ],
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "VITE",
+          "endsPattern": "Local:"
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "group": "dev"
+      },
+      "detail": "Frontend ({{SERVICE_NAME}}) on :{{FRONTEND_PORT}}"
+    },
+    {
+      "label": "Start Fullstack ({{SERVICE_NAME}})",
+      "dependsOn": [
+        "Start Backend ({{SERVICE_NAME}})",
+        "Start Frontend ({{SERVICE_NAME}})"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "group": "dev"
+      },
+      "detail": "Start both frontend and backend together"
+    },
+    {
+      "label": "Stop {{SERVICE_NAME}} Backend",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-Command",
+        "$l = netstat -ano | Select-String ':{{BACKEND_PORT}} ' | Where-Object { $_ -match 'LISTENING' }; if ($l) { $p = ($l.Line -split '\\s+')[-1].Trim(); taskkill /PID $p /F | Out-Null; Write-Host \"Stopped PID $p on :{{BACKEND_PORT}}\" } else { Write-Host 'Nothing listening on :{{BACKEND_PORT}}' }"
+      ],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "group": "dev"
+      },
+      "detail": "Kill the process listening on :{{BACKEND_PORT}}"
+    }
+  ]
+}
