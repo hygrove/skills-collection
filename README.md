@@ -29,6 +29,7 @@
 |--------|----------|
 | `extended-thinking` | 扩展性思维回答风格：先给核心答案，再延伸关联知识点、给避坑指南和真实坑提醒。 |
 | `vs-dep` | 开发/生产启动配置生成器：自动探测技术栈，产出 dev.ps1 + .vscode 配置（打开项目自启）+ 生产一键启动脚本。 |
+| `general-fast-vue` | FastAPI + Vue3 单端口全栈项目架构规约：8 条铁律 + 8 步搭建流程 + 5 个机器闸门（挂载顺序 / 比率列 / 只增不减 / 裸 print / 路径端口硬编码），另含读写分层与云端部署裁决。 |
 
 > 这是**你自己写的**，和下面那套"别人家的"严格分开，互不影响。
 
@@ -41,6 +42,8 @@
 - 中文版：名字后面加 `-zh`，例如 `grill-me-zh`、`to-spec-zh`（加后缀是为了不让中英文"撞名"）
 
 另外还配了 **2 个"路由技能"**（相当于导航地图，见第四节），帮你在 25 个里快速挑对的那个。
+
+> **仓库技能总数 55 个** = 你的 3 个原创 + Matt 的 25 个 × 2 种语言 + 2 个路由技能。
 
 ---
 
@@ -81,9 +84,13 @@ cp -r skills/*-zh "$HOME/.workbuddy/skills/"
 cp -r skills/mattpocock-menu-zh "$HOME/.workbuddy/skills/"
 # 别忘了你自己的技能
 cp -r skills/extended-thinking "$HOME/.workbuddy/skills/"
+cp -r skills/vs-dep "$HOME/.workbuddy/skills/"
+cp -r skills/general-fast-vue "$HOME/.workbuddy/skills/"
 ```
 
 > 注意：中文技能名字带 `-zh`，**别把英文同名版也塞进去重复装**，选一种语言即可，除非你中英文都想留着对照。
+>
+> `general-fast-vue` 带五个 Python 闸门脚本，想用它们需要本机有 Python；不用脚本也不影响 AI 加载技能本身。
 
 ### 第 3 步：让 WorkBuddy 认出来
 
@@ -138,6 +145,7 @@ cp -r skills/extended-thinking "$HOME/.workbuddy/skills/"
 |--------|------|
 | `extended-thinking` | 扩展性思维回答：核心答案 → 关联扩展 → 避坑指南 → 真实坑。 |
 | `vs-dep` | 开发/生产启动配置生成器：探测技术栈 → 生成 dev.ps1 + .vscode（folderOpen 自启）+ 生产一键脚本。 |
+| `general-fast-vue` | FastAPI + Vue3 单端口全栈项目架构规约：8 条铁律 + 8 步流程 + 5 个机器闸门；附读写分层（人工修正/主数据 CRUD）与迁移性·云端部署裁决。**装它之前先看 [技能自己的 README](skills/general-fast-vue/README.md)。** |
 
 ### Matt Pocock 技能集 · 自动触发（11 个，场景对上 AI 自己跑）
 
@@ -184,6 +192,7 @@ skills-collection/
 └── skills/                   # 所有技能都在这个文件夹里
     ├── extended-thinking/    # 【你自己的】扩展性思维技能
     ├── vs-dep/               # 【你自己的】开发/生产启动配置生成器
+    ├── general-fast-vue/     # 【你自己的】FastAPI+Vue3 单端口全栈架构规约（含 5 个闸门脚本）
     ├── grill-me/             # Matt 技能 · 英文
     ├── grill-me-zh/          # Matt 技能 · 中文（带 -zh 后缀）
     ├── ...（其余 23 个 Matt 技能的中英两套）
@@ -193,6 +202,10 @@ skills-collection/
 ```
 
 约定：每个技能文件夹里的 `SKILL.md` 是**必须**的（元数据 + 指令），`references/`、`*.md`、`*.sh` 等是可选的参考资料。
+
+> `general-fast-vue` 比其他技能多一层：它的 `scripts/` 里带**五个可执行的闸门脚本**（Python 写的）。
+> 它们需要 Python 环境才能跑；**不跑也不影响 AI 使用技能本身**（规则都写在 SKILL.md 里）。
+> 详见 [skills/general-fast-vue/README.md](skills/general-fast-vue/README.md)。
 
 ---
 
@@ -207,7 +220,10 @@ skills-collection/
 - 确认文件夹直接放在 `~/.workbuddy/skills/` 下，且里面有 `SKILL.md`。
 
 **Q3：技能之间会打架吗？**
-不会。你自己的 `extended-thinking` 和 Matt 那套名字完全不同；Matt 的中英文靠 `-zh` 区分。WorkBuddy 按"文件夹名 + SKILL.md 里的 name 字段"识别，互不影响。
+不会。你自己的 `extended-thinking` / `vs-dep` / `general-fast-vue` 和 Matt 那套名字完全不同；Matt 的中英文靠 `-zh` 区分。WorkBuddy 按"文件夹名 + SKILL.md 里的 name 字段"识别，互不影响。
+
+> 唯一的"分工协作"是：`general-fast-vue` 与 Matt 的 `fullstack-vf` 都覆盖全栈搭建。
+> 两者已互相标注了适用边界——**纯 CRUD 后台**用 `fullstack-vf`，**数据批处理进指标库**用 `general-fast-vue`（它还额外含读写分层与云端部署裁决）。
 
 **Q4：我想只装其中几个，怎么挑？**
 看上面"完整技能清单"，挑你用得上的那几行，把对应文件夹复制进 `skills/` 即可。新手从"导航 + grill-me-zh + to-spec-zh"三件套起步最稳。
