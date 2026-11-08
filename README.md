@@ -2,6 +2,7 @@
 
 > 这是一个**给 AI 助手 WorkBuddy 装"技能/插件"的仓库**。
 > 把平时跨机器、跨项目能复用的技能集中在这里，换电脑或重装时，拉下来复制一下就能用。
+> 技能均按 Agent Skills 开放规范编写（`SKILL.md` + 可选 `assets/`、`references/`），除 WorkBuddy 外，Claude Code、Cursor、Codex、Gemini CLI 等也能直接装入各自的 skills 目录使用。
 
 ---
 
@@ -30,6 +31,7 @@
 | `extended-thinking` | 扩展性思维回答风格：先给核心答案，再延伸关联知识点、给避坑指南和真实坑提醒。 |
 | `vs-dep` | 开发/生产启动配置生成器：自动探测技术栈，产出 dev.ps1 + .vscode 配置（打开项目自启）+ 生产一键启动脚本。 |
 | `general-fast-vue` | FastAPI + Vue3 单端口全栈项目架构规约：8 条铁律 + 8 步搭建流程 + 5 个机器闸门（挂载顺序 / 比率列 / 只增不减 / 裸 print / 路径端口硬编码），另含读写分层与云端部署裁决。 |
+| `ydfc` | 影刀 RPA 编码模块函数生成器：一句「传入 X，输出 Y」→ 一段带详细中文 docstring 与逐行注释、可直接粘贴的代码。遵循 Agent Skills 开放规范，跨 AI 工具可用。 |
 
 > 这是**你自己写的**，和下面那套"别人家的"严格分开，互不影响。
 
@@ -43,7 +45,7 @@
 
 另外还配了 **2 个"路由技能"**（相当于导航地图，见第四节），帮你在 25 个里快速挑对的那个。
 
-> **仓库技能总数 55 个** = 你的 3 个原创 + Matt 的 25 个 × 2 种语言 + 2 个路由技能。
+> **仓库技能总数 56 个** = 你的 4 个原创 + Matt 的 25 个 × 2 种语言 + 2 个路由技能。
 
 ---
 
@@ -86,6 +88,7 @@ cp -r skills/mattpocock-menu-zh "$HOME/.workbuddy/skills/"
 cp -r skills/extended-thinking "$HOME/.workbuddy/skills/"
 cp -r skills/vs-dep "$HOME/.workbuddy/skills/"
 cp -r skills/general-fast-vue "$HOME/.workbuddy/skills/"
+cp -r skills/ydfc "$HOME/.workbuddy/skills/"
 ```
 
 > 注意：中文技能名字带 `-zh`，**别把英文同名版也塞进去重复装**，选一种语言即可，除非你中英文都想留着对照。
@@ -146,6 +149,7 @@ cp -r skills/general-fast-vue "$HOME/.workbuddy/skills/"
 | `extended-thinking` | 扩展性思维回答：核心答案 → 关联扩展 → 避坑指南 → 真实坑。 |
 | `vs-dep` | 开发/生产启动配置生成器：探测技术栈 → 生成 dev.ps1 + .vscode（folderOpen 自启）+ 生产一键脚本。 |
 | `general-fast-vue` | FastAPI + Vue3 单端口全栈项目架构规约：8 条铁律 + 8 步流程 + 5 个机器闸门；附读写分层（人工修正/主数据 CRUD）与迁移性·云端部署裁决。**装它之前先看 [技能自己的 README](skills/general-fast-vue/README.md)。** |
+| `ydfc` | 影刀 RPA 函数生成器：按「传入 X，输出 Y」产出符合影刀固定骨架、带 docstring 八项与逐行中文注释的完整代码；只出代码文本，不写工程文件。**跨平台**：见 [SKILL.md 的「跨平台加载」](skills/ydfc/SKILL.md)。 |
 
 ### Matt Pocock 技能集 · 自动触发（11 个，场景对上 AI 自己跑）
 
@@ -193,6 +197,7 @@ skills-collection/
     ├── extended-thinking/    # 【你自己的】扩展性思维技能
     ├── vs-dep/               # 【你自己的】开发/生产启动配置生成器
     ├── general-fast-vue/     # 【你自己的】FastAPI+Vue3 单端口全栈架构规约（含 5 个闸门脚本）
+    ├── ydfc/                 # 【你自己的】影刀编码模块函数生成器（跨平台，含 assets/ 与 references/）
     ├── grill-me/             # Matt 技能 · 英文
     ├── grill-me-zh/          # Matt 技能 · 中文（带 -zh 后缀）
     ├── ...（其余 23 个 Matt 技能的中英两套）
@@ -201,7 +206,7 @@ skills-collection/
     └── （每个技能文件夹里：SKILL.md + 可能的 references/ 等）
 ```
 
-约定：每个技能文件夹里的 `SKILL.md` 是**必须**的（元数据 + 指令），`references/`、`*.md`、`*.sh` 等是可选的参考资料。
+约定：每个技能文件夹里的 `SKILL.md` 是**必须**的（元数据 + 指令），`references/`、`*.md`、`*.sh` 等是可选的参考资料。frontmatter 只写规范必需的 `name` 与 `description`，不放厂商私有字段，保证跨平台上传/打包不报错；资源一律用相对路径引用，整目录复制即可迁移。
 
 > `general-fast-vue` 比其他技能多一层：它的 `scripts/` 里带**五个可执行的闸门脚本**（Python 写的）。
 > 它们需要 Python 环境才能跑；**不跑也不影响 AI 使用技能本身**（规则都写在 SKILL.md 里）。
@@ -220,7 +225,7 @@ skills-collection/
 - 确认文件夹直接放在 `~/.workbuddy/skills/` 下，且里面有 `SKILL.md`。
 
 **Q3：技能之间会打架吗？**
-不会。你自己的 `extended-thinking` / `vs-dep` / `general-fast-vue` 和 Matt 那套名字完全不同；Matt 的中英文靠 `-zh` 区分。WorkBuddy 按"文件夹名 + SKILL.md 里的 name 字段"识别，互不影响。
+不会。你自己的 `extended-thinking` / `vs-dep` / `general-fast-vue` / `ydfc` 和 Matt 那套名字完全不同；Matt 的中英文靠 `-zh` 区分。WorkBuddy 按"文件夹名 + SKILL.md 里的 name 字段"识别，互不影响。
 
 > 唯一的"分工协作"是：`general-fast-vue` 与 Matt 的 `fullstack-vf` 都覆盖全栈搭建。
 > 两者已互相标注了适用边界——**纯 CRUD 后台**用 `fullstack-vf`，**数据批处理进指标库**用 `general-fast-vue`（它还额外含读写分层与云端部署裁决）。
