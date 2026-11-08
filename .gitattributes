@@ -1,0 +1,4 @@
+# 影刀代码模板与规则文档统一用 LF：避免 Windows 检出成 CRLF 后破坏 Python 缩进
+skills/ydfc/SKILL.md text eol=lf
+skills/ydfc/assets/skeleton.py.tpl text eol=lf
+skills/ydfc/references/yingdao_rules.md text eol=lf
