@@ -32,8 +32,10 @@
 | `vs-dep` | 开发/生产启动配置生成器：自动探测技术栈，产出 dev.ps1 + .vscode 配置（打开项目自启）+ 生产一键启动脚本。 |
 | `general-fast-vue` | FastAPI + Vue3 单端口全栈项目架构规约：8 条铁律 + 8 步搭建流程 + 5 个机器闸门（挂载顺序 / 比率列 / 只增不减 / 裸 print / 路径端口硬编码），另含读写分层与云端部署裁决。 |
 | `ydfc` | 影刀 RPA 编码模块函数生成器：一句「传入 X，输出 Y」→ 一段带详细中文 docstring 与逐行注释、可直接粘贴的代码。遵循 Agent Skills 开放规范，跨 AI 工具可用。 |
+| `ub-mode` | 改代码时的纪律约束：写或改任何代码都走「先跑通 → 再做对 → 守惯例」三段式。含 TDD、根因修复、幂等、复杂度/重复率/变异测试三道质量闸门。召唤型，用 `/ub-mode` 触发。 |
 
-> 这是**你自己写的**，和下面那套"别人家的"严格分开，互不影响。
+> `extended-thinking` / `vs-dep` / `general-fast-vue` / `ydfc` 是**你自己写的**；`ub-mode` 是你**引入并裁剪整合**的社区规则集（来源与授权见第五节脚注）。
+> 这 5 个和下面那套"别人家的"严格分开，互不影响。
 
 ### 2）Matt Pocock 技能集（25 个，中英双语，来自社区）
 
@@ -45,7 +47,7 @@
 
 另外还配了 **2 个"路由技能"**（相当于导航地图，见第四节），帮你在 25 个里快速挑对的那个。
 
-> **仓库技能总数 56 个** = 你的 4 个原创 + Matt 的 25 个 × 2 种语言 + 2 个路由技能。
+> **仓库技能总数 57 个** = 你的 5 个（4 个原创 + 1 个引入整合）+ Matt 的 25 个 × 2 种语言 + 2 个路由技能。
 
 ---
 
@@ -89,6 +91,7 @@ cp -r skills/extended-thinking "$HOME/.workbuddy/skills/"
 cp -r skills/vs-dep "$HOME/.workbuddy/skills/"
 cp -r skills/general-fast-vue "$HOME/.workbuddy/skills/"
 cp -r skills/ydfc "$HOME/.workbuddy/skills/"
+cp -r skills/ub-mode "$HOME/.workbuddy/skills/"
 ```
 
 > 注意：中文技能名字带 `-zh`，**别把英文同名版也塞进去重复装**，选一种语言即可，除非你中英文都想留着对照。
@@ -150,6 +153,9 @@ cp -r skills/ydfc "$HOME/.workbuddy/skills/"
 | `vs-dep` | 开发/生产启动配置生成器：探测技术栈 → 生成 dev.ps1 + .vscode（folderOpen 自启）+ 生产一键脚本。 |
 | `general-fast-vue` | FastAPI + Vue3 单端口全栈项目架构规约：8 条铁律 + 8 步流程 + 5 个机器闸门；附读写分层（人工修正/主数据 CRUD）与迁移性·云端部署裁决。**装它之前先看 [技能自己的 README](skills/general-fast-vue/README.md)。** |
 | `ydfc` | 影刀 RPA 函数生成器：按「传入 X，输出 Y」产出符合影刀固定骨架、带 docstring 八项与逐行中文注释的完整代码；只出代码文本，不写工程文件。**跨平台**：见 [SKILL.md 的「跨平台加载」](skills/ydfc/SKILL.md)。 |
+| `ub-mode` | 改代码时的纪律约束：先跑通 → 再做对 → 守惯例。含 TDD、根因修复、幂等、CRAP<10 / 重复率<0.8 / 变异测试三道质量闸门。**召唤型**，用 `/ub-mode` 触发。详见 [技能自己的 README](skills/ub-mode/README.md)。 |
+
+> `ub-mode` 是**引入并裁剪整合**的社区规则集（源自 [@poteto](https://github.com/poteto) 的 `poteto-mode`/`pstack`，配套工具为 [unclebob/crapper](https://github.com/unclebob/crapper)、[dryer](https://github.com/unclebob/dryer)、[mutator](https://github.com/unclebob/mutator)），仓库内保留其 MIT LICENSE（版权归 Robert C. Martin）。
 
 ### Matt Pocock 技能集 · 自动触发（11 个，场景对上 AI 自己跑）
 
@@ -198,6 +204,7 @@ skills-collection/
     ├── vs-dep/               # 【你自己的】开发/生产启动配置生成器
     ├── general-fast-vue/     # 【你自己的】FastAPI+Vue3 单端口全栈架构规约（含 5 个闸门脚本）
     ├── ydfc/                 # 【你自己的】影刀编码模块函数生成器（跨平台，含 assets/ 与 references/）
+    ├── ub-mode/              # 【你引入整合的】改代码纪律约束（三段式 + 三道质量闸门，含 LICENSE）
     ├── grill-me/             # Matt 技能 · 英文
     ├── grill-me-zh/          # Matt 技能 · 中文（带 -zh 后缀）
     ├── ...（其余 23 个 Matt 技能的中英两套）
@@ -225,7 +232,7 @@ skills-collection/
 - 确认文件夹直接放在 `~/.workbuddy/skills/` 下，且里面有 `SKILL.md`。
 
 **Q3：技能之间会打架吗？**
-不会。你自己的 `extended-thinking` / `vs-dep` / `general-fast-vue` / `ydfc` 和 Matt 那套名字完全不同；Matt 的中英文靠 `-zh` 区分。WorkBuddy 按"文件夹名 + SKILL.md 里的 name 字段"识别，互不影响。
+不会。你自己的 `extended-thinking` / `vs-dep` / `general-fast-vue` / `ydfc` / `ub-mode` 和 Matt 那套名字完全不同；Matt 的中英文靠 `-zh` 区分。WorkBuddy 按"文件夹名 + SKILL.md 里的 name 字段"识别，互不影响。
 
 > 唯一的"分工协作"是：`general-fast-vue` 与 Matt 的 `fullstack-vf` 都覆盖全栈搭建。
 > 两者已互相标注了适用边界——**纯 CRUD 后台**用 `fullstack-vf`，**数据批处理进指标库**用 `general-fast-vue`（它还额外含读写分层与云端部署裁决）。
@@ -238,4 +245,6 @@ skills-collection/
 
 ---
 
-> 仓库维护约定：你自己的原创技能放 `skills/` 根下独立文件夹；第三方（如 Matt Pocock）技能保持原名，中文翻译统一加 `-zh` 后缀，避免与英文版重名。
+> 仓库维护约定：你自己的原创技能放 `skills/` 根下独立文件夹；引入整合的社区技能（如 `ub-mode`）同样独立成文件夹，并**保留其原始 LICENSE 与来源说明**；第三方（如 Matt Pocock）技能保持原名，中文翻译统一加 `-zh` 后缀，避免与英文版重名。
+>
+> 约定提醒：**新增技能时记得同步更新本 README**（第二节的自研技能表、第五节的完整清单表、第六节的目录结构图，以及第三节方式 B 的安装命令），否则换机器重装时会漏掉新技能、总数也对不上。
