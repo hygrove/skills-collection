@@ -1,6 +1,6 @@
-# skills-collection —— WorkBuddy 技能收集仓库
+# skills-collection ——  技能收集仓库
 
-> 这是一个**给 AI 助手 WorkBuddy 装"技能/插件"的仓库**。
+> 这是一个给 AI 助手 装"技能/插件"的仓库。
 > 把平时跨机器、跨项目能复用的技能集中在这里，换电脑或重装时，拉下来复制一下就能用。
 > 技能均按 Agent Skills 开放规范编写（`SKILL.md` + 可选 `assets/`、`references/`），除 WorkBuddy 外，Claude Code、Cursor、Codex、Gemini CLI 等也能直接装入各自的 skills 目录使用。
 
@@ -10,7 +10,7 @@
 
 用大白话讲：**技能就是一份写给 AI 看的"操作说明书"**。
 
-- 你平时跟 WorkBuddy 说话，它是凭"常识"在答。
+- 比如你平时跟 WorkBuddy 说话，它是凭"常识"在答。
 - 当你装了一个技能，就相当于塞给它一本**专项手册**（比如"怎么严酷地拷问一个方案""怎么把对话整理成开发工单"）。
 - 装好之后，AI 要么**你点名让它用**，要么**它自己看场景自动用**。
 
