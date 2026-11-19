@@ -2,3 +2,5 @@
 skills/ydfc/SKILL.md text eol=lf
 skills/ydfc/assets/skeleton.py.tpl text eol=lf
 skills/ydfc/references/yingdao_rules.md text eol=lf
+skills/ydfc/assets/verify_gate.py text eol=lf
+skills/ydfc/assets/verify_gate_selftest.py text eol=lf

@@ -31,7 +31,7 @@
 | `extended-thinking` | 扩展性思维回答风格：先给核心答案，再延伸关联知识点、给避坑指南和真实坑提醒。 |
 | `vs-dep` | 开发/生产启动配置生成器：自动探测技术栈，产出 dev.ps1 + .vscode 配置（打开项目自启）+ 生产一键启动脚本。 |
 | `general-fast-vue` | FastAPI + Vue3 单端口全栈项目架构规约：8 条铁律 + 8 步搭建流程 + 5 个机器闸门（挂载顺序 / 比率列 / 只增不减 / 裸 print / 路径端口硬编码），另含读写分层与云端部署裁决。 |
-| `ydfc` | 影刀 RPA 编码模块函数生成器：一句「传入 X，输出 Y」→ 一段带详细中文 docstring 与逐行注释、可直接粘贴的代码。遵循 Agent Skills 开放规范，跨 AI 工具可用。 |
+| `ydfc` | 影刀 RPA 编码模块函数生成器：一句「传入 X，输出 Y」→ 一段可直接粘贴、带 docstring 八项与中文注释的 Python 函数。交付前由门禁脚本做语法 / 目标版本（3.7 / 3.10）/ 结构 / 实跑三重校验，自带 19 条门禁回归用例。遵循 Agent Skills 开放规范，跨 AI 工具可用。 |
 | `ub-mode` | 改代码时的纪律约束：写或改任何代码都走「先跑通 → 再做对 → 守惯例」三段式。含 TDD、根因修复、幂等、复杂度/重复率/变异测试三道质量闸门。召唤型，用 `/ub-mode` 触发。 |
 
 > `extended-thinking` / `vs-dep` / `general-fast-vue` / `ydfc` 是**你自己写的**；`ub-mode` 是你**引入并裁剪整合**的社区规则集（来源与授权见第五节脚注）。
@@ -63,6 +63,8 @@
 | macOS / Linux | `~/.workbuddy/skills/` |
 
 > 小提示：路径里的 `.workbuddy` 是个**隐藏文件夹**，文件管理器里默认看不见，直接地址栏粘贴路径就能进。
+>
+> 其它工具同理：装到各自 skills 目录即可，例如 Qoder 为 `~/.qoder-cn/skills/`，Claude Code 为 `.claude/skills/`。技能内部用「本技能目录」相对定位，不依赖固定安装路径。
 
 ### 第 2 步：把技能文件夹复制进去
 
@@ -152,7 +154,7 @@ cp -r skills/ub-mode "$HOME/.workbuddy/skills/"
 | `extended-thinking` | 扩展性思维回答：核心答案 → 关联扩展 → 避坑指南 → 真实坑。 |
 | `vs-dep` | 开发/生产启动配置生成器：探测技术栈 → 生成 dev.ps1 + .vscode（folderOpen 自启）+ 生产一键脚本。 |
 | `general-fast-vue` | FastAPI + Vue3 单端口全栈项目架构规约：8 条铁律 + 8 步流程 + 5 个机器闸门；附读写分层（人工修正/主数据 CRUD）与迁移性·云端部署裁决。**装它之前先看 [技能自己的 README](skills/general-fast-vue/README.md)。** |
-| `ydfc` | 影刀 RPA 函数生成器：按「传入 X，输出 Y」产出符合影刀固定骨架、带 docstring 八项与逐行中文注释的完整代码；只出代码文本，不写工程文件。**跨平台**：见 [SKILL.md 的「跨平台加载」](skills/ydfc/SKILL.md)。 |
+| `ydfc` | 影刀 RPA 函数生成器：按「传入 X，输出 Y」产出符合影刀固定骨架、带 docstring 八项与逐行中文注释的完整代码；交付前自动跑 `assets/verify_gate.py`（语法 + 目标版本 `--python 3.7` + 结构 + 剥离壳实跑），`--strict` 可把未测到的检查当失败；门禁自身带 19 条回归自检。只出代码文本，不写工程文件。**跨平台**：见 [SKILL.md 的「跨平台加载」](skills/ydfc/SKILL.md)。 |
 | `ub-mode` | 改代码时的纪律约束：先跑通 → 再做对 → 守惯例。含 TDD、根因修复、幂等、CRAP<10 / 重复率<0.8 / 变异测试三道质量闸门。**召唤型**，用 `/ub-mode` 触发。详见 [技能自己的 README](skills/ub-mode/README.md)。 |
 
 > `ub-mode` 是**引入并裁剪整合**的社区规则集（源自 [@poteto](https://github.com/poteto) 的 `poteto-mode`/`pstack`，配套工具为 [unclebob/crapper](https://github.com/unclebob/crapper)、[dryer](https://github.com/unclebob/dryer)、[mutator](https://github.com/unclebob/mutator)），仓库内保留其 MIT LICENSE（版权归 Robert C. Martin）。
@@ -203,7 +205,7 @@ skills-collection/
     ├── extended-thinking/    # 【你自己的】扩展性思维技能
     ├── vs-dep/               # 【你自己的】开发/生产启动配置生成器
     ├── general-fast-vue/     # 【你自己的】FastAPI+Vue3 单端口全栈架构规约（含 5 个闸门脚本）
-    ├── ydfc/                 # 【你自己的】影刀编码模块函数生成器（跨平台，含 assets/ 与 references/）
+    ├── ydfc/                 # 【你自己的】影刀编码模块函数生成器（跨平台，含门禁/自检脚本与规则参考）
     ├── ub-mode/              # 【你引入整合的】改代码纪律约束（三段式 + 三道质量闸门，含 LICENSE）
     ├── grill-me/             # Matt 技能 · 英文
     ├── grill-me-zh/          # Matt 技能 · 中文（带 -zh 后缀）

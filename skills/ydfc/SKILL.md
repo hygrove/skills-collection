@@ -1,6 +1,6 @@
 ---
 name: ydfc
-description: Generate a ready-to-paste Python function for a YingDao (影刀) RPA coding module from a plain-language spec like "传入XX，输出XX", optionally prefixed with 影刀模式 or 影刀模式 3.7：. When the request is ambiguous, it first runs one round of structured questions (AskUserQuestion) to settle the decisions, while looking up facts itself. The result is one complete code block following the fixed YingDao module skeleton, with all explanation carried by a concise Chinese docstring and inline comments. The function is executed and asserted against real inputs in a local Python environment before delivery, and the exact bytes verified are the bytes pasted to the user — YingDao is only a packaging shell, the function body is ordinary Python. Keep the code lean: no speculative branches, no defensive dead paths, docstring items of 1-3 lines each. It never writes to YingDao project files.
+description: 'YingDao (影刀) RPA coding-module function generator. Trigger on 影刀模式 (optionally 影刀模式 3.7：) or an explicit ydfc request; turn 传入X，输出Y into one paste-ready Python function on the fixed YingDao skeleton. Ambiguous specs get one round of AskUserQuestion: facts are looked up by the agent, decisions are asked of the user. Each delivery is written to a temp .py, verified by assets/verify_gate.py with real inputs, then pasted back byte-for-byte from that file. Never writes YingDao project files.'
 ---
 
 # ydfc — 影刀编码模块函数生成器
@@ -13,7 +13,7 @@ description: Generate a ready-to-paste Python function for a YingDao (影刀) RP
 
 - 识别显式技能调用，或句首出现「影刀模式」。模式词仅对当前这一句生效。
 - 从描述中提取输入与输出。句式不标准时按语义宽松理解。
-- 版本号紧跟模式词时按该版本生成（`影刀模式 3.7：`）；未指定即用 references 里「运行环境」一节给的目标版本。
+- 版本号紧跟模式词时按该版本生成（`影刀模式 3.7：`）；未指定即用 references 里「运行环境」一节给的目标版本。**记下这个版本，第 4 步要把它传给门禁。**
 
 ## 需求模糊时的访谈
 
@@ -54,15 +54,23 @@ description: Generate a ready-to-paste Python function for a YingDao (影刀) RP
 
 **第 4 步 · 跑门禁（强制）**
 ```bash
-python ~/.workbuddy/skills/ydfc/assets/verify_gate.py <模块文件.py> [断言脚本.py]
+python "<本技能目录>/assets/verify_gate.py" <模块文件.py> [断言脚本.py] [--python 3.7] [--fn 函数名] [--strict]
 ```
-门禁自动完成三道：语法 + 3.10 兼容 + 转义体检；骨架完整性 + import 位置 + 签名 + 纯函数 + docstring；剥离壳后实跑并校验通用契约（正反斜杠等价、非法输入抛明确异常）。
+`<本技能目录>` 指本 `SKILL.md` 所在目录，**不要写死路径**。Qoder 下通常是 `~/.qoder-cn/skills/ydfc`，其它工具以实际安装位置为准。
 
-第二个参数是可选的针对性断言脚本，写你自己的 `assert`（如"销售额必须等于 1317.8"）。门禁内的实跑脚本会把 `f`（被测函数）注入断言脚本的命名空间。
+门禁自动完成三道：语法 + 目标版本兼容 + 转义/路径体检 + 常见新 API 扫描；骨架完整性 + import 位置 + 签名 + 纯函数 + docstring + 参数面板约束；剥离壳后实跑并校验通用契约（正反斜杠等价、非法输入抛中文异常）。
 
-涉及文件读写的任务，先设 `YDFC_TEST_XLSX` 指向用户的真实文件再跑，正反斜杠等价性检查会启用。
+- 句首写了「影刀模式 3.7」就加 `--python 3.7`，否则默认 3.10。
+- 第二个位置参数是可选的针对性断言脚本，写你自己的 `assert`（如"销售额必须等于 1317.8"）。门禁会把 `f`（被测函数）、`FN`（函数名）、`F`（模块命名空间）注入断言脚本。
+- 多函数模块默认逐个函数实跑；断言只作用于第一个新函数，可用 `--fn` 指定。
+- 涉及文件读写的任务，先设 `YDFC_TEST_XLSX`（或 `YDFC_TEST_PATH`）指向真实文件，路径等价性检查才有意义。**输出里的 `[SKIP]` 不等于通过**：关键 SKIP（如路径检查）要尽量补上环境变量后重跑；要求"一点没测到就算失败"时加 `--strict`。
+- 首次使用建议跑一次自检：`python "<本技能目录>/assets/verify_gate_selftest.py"`，它用内置样例确认门禁既能抓坏代码、也不会误伤好代码。
 
-*完成标准：门禁三道全绿。任何一项 FAIL 都先改代码再重跑。*
+*完成标准：门禁三道全绿，且没有被跳过的关键检查。*
+
+**门禁非 0 时，先分清是哪一类失败：**
+- 输出里有 `[FAIL] ...` → 是代码问题，改代码重跑。
+- 输出是 `Traceback`、`UnicodeDecodeError`、找不到脚本文件 → 是环境/路径问题，先修运行环境，不要把代码改坏。
 
 **第 5 步 · 交付**
 用 Read 读回第 3 步那个文件，**逐字**贴成一个完整代码块。代码块外最多写一句「用『调用模块』选函数 <函数名>」。
@@ -95,51 +103,35 @@ Windows 路径是字符串字面量的头号杀手：`\U` 会被当成 Unicode �
 
 ## 交付前自检清单
 
-逐条核对，未通过不输出。规则的定义在 `references/yingdao_rules.md`，这里只列检查动作。
+代码层面的核对交给门禁，这里只留脚本判不了、需要你自己判断的事。
 
 **需求澄清**
-- [ ] 有悬空决策时已发过访谈（AskUserQuestion），且是一轮问完
-- [ ] 问的是决策而非事实——事实已自己查过
-- [ ] 每个问题的第一个选项是推荐项并标注 `（推荐）`
+- [ ] 有悬空决策时发过一轮访谈，且一轮问完；没有把事实当决策去问
 - [ ] 需求已唯一确定时没有多余访谈
 
 **一致性**
-- [ ] 贴出的代码块逐字来自被验证的那份文件（Read 读回后粘贴）
-- [ ] 交付文本的语法已用 `ast.parse()` 确认
+- [ ] 贴出的代码块是用 Read 读回的那份文件，逐字未改
 
-**语法与兼容**
-- [ ] `ast.parse(src, feature_version=(3,10))` 通过
-- [ ] 无歧义转义（反斜杠 + 大写 U / 大写 x 需在 raw 字符串内），Windows 路径用正斜杠
-
-**结构**
-- [ ] 骨架注释块、4 行固定 import、`main` 定义逐字未改
-- [ ] 新增 import 只出现在位置 A
-- [ ] 门禁报告的签名项全绿（return / 标识符 / 注解 / 默认参数 / 纯函数 / 中文异常）
-
-**可运行性**
-- [ ] 门禁三道全绿，实跑输出有断言通过的实际结果
-- [ ] 覆盖正常输入 + 边界输入 + 非法输入三类
-
-**简洁性**
-- [ ] 门禁的 docstring 行数检查通过（未喧宾夺主）
-- [ ] 没有为假想需求写的分支和多余参数
-- [ ] 注释解释"为什么"而非复述"做什么"
+**门禁**
+- [ ] 三道全绿，且没有被跳过的关键检查（尤其是路径等价性）
+- [ ] 针对性断言比对了这次需求的真实数值，而不只是"能跑不报错"
 
 **边界**
-- [ ] 交付声明与实际验证范围一致
+- [ ] 交付声明与实际验证范围一致（没在影刀里跑过就不说跑过）
 - [ ] 未写入或修改任何影刀工程文件
 
 ## 资源
 
 - `assets/skeleton.py.tpl` — 模块骨架，第 4 条注释按官方写「调用模块」。
-- `assets/verify_gate.py` — 交付门禁。`python verify_gate.py <模块文件.py> [断言脚本.py]`；涉及文件读写时设 `YDFC_TEST_XLSX` 指向真实 xlsx；`--text <文件>` 验证一段交付文本本身。
-- `assets/verify_gate_selftest.py` — 门禁自身的反向测试。`python verify_gate_selftest.py <一份合格模块>` 会造出 13 类坏代码，确认门禁都能抓到。一个只会报 PASS 的门禁等于没有门禁。
+- `assets/verify_gate.py` — 交付门禁。`python verify_gate.py <模块文件.py> [断言脚本.py] [--python 3.7] [--fn 函数名] [--strict]`；涉及文件读写时设 `YDFC_TEST_XLSX` 指向真实文件；`--text <文件>` 验证一段交付文本本身。
+- `assets/verify_gate_selftest.py` — 门禁自身的回归测试。默认用内置样例跑 19 条用例（17 条坏代码必须被抓到，2 条好代码不能被误伤）；也可传一个模块路径，先确认它能过门禁。一个只会报 PASS 的门禁等于没有门禁。
 - `references/yingdao_rules.md` — 代码铁律、docstring 八项、简洁性要求、影刀环境与调用机制、已知缺陷。
 
 ## 跨平台加载
 
 本技能遵循 Agent Skills 开放规范：仅含 `SKILL.md`、`assets/`、`references/`，无网络依赖、无 MCP 或厂商专有字段；frontmatter 只用规范必需的 `name` 与 `description`。
 
-- 安装：把整个 `ydfc/` 放进目标工具的技能搜索路径——WorkBuddy `~/.workbuddy/skills/`、Claude Code `.claude/skills/`、Cursor `.cursor/skills/`、Codex `.agents/skills/`、Gemini CLI `activate_skill`。整目录复制，不要拆散 `assets/` 与 `references/`。
+- 安装：把整个 `ydfc/` 放进目标工具的技能目录（Qoder 为 `~/.qoder-cn/skills/`，其它工具以其文档为准），保持 `assets/` 与 `references/` 同目录。
 - 触发：各工具按 `description` 语义匹配，可直接说「影刀模式：传入…输出…」或「按 ydfc 规范写函数」。
-- 迁移：本技能不依赖本机绝对路径，换机器只需复制目录。
+- 调用脚本：用「本技能目录」相对定位，不要写死某一台机器的绝对路径。
+- 迁移：目录整体复制即可；门禁与自检脚本自身兼容 Python 3.7+。
