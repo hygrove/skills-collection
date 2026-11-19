@@ -38,6 +38,7 @@
 > 这 5 个和下面那套"别人家的"严格分开，互不影响。
 
 ### 2）Matt Pocock 技能集（25 个，中英双语，来自社区）
+中文版优秀仓库：git@github.com:vinvcn/mattpocock-skills-zh-CN.git
 
 这一套来自 Matt Pocock 开源的 `skills` 合集，覆盖**写代码、审代码、做架构、管 issue、教学**等场景。
 我们做了**双语**：每个技能都有**英文原版**和**中文翻译版**两份。
@@ -160,7 +161,6 @@ cp -r skills/ub-mode "$HOME/.workbuddy/skills/"
 > `ub-mode` 是**引入并裁剪整合**的社区规则集（源自 [@poteto](https://github.com/poteto) 的 `poteto-mode`/`pstack`，配套工具为 [unclebob/crapper](https://github.com/unclebob/crapper)、[dryer](https://github.com/unclebob/dryer)、[mutator](https://github.com/unclebob/mutator)），仓库内保留其 MIT LICENSE（版权归 Robert C. Martin）。
 
 ### Matt Pocock 技能集 · 自动触发（11 个，场景对上 AI 自己跑）
-中文版优秀仓库：git@github.com:vinvcn/mattpocock-skills-zh-CN.git
 
 | 英文 | 中文(-zh) | 一句话用途 |
 |------|-----------|------------|
