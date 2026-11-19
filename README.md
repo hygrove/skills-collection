@@ -37,18 +37,19 @@
 > `extended-thinking` / `vs-dep` / `general-fast-vue` / `ydfc` 是**你自己写的**；`ub-mode` 是你**引入并裁剪整合**的社区规则集（来源与授权见第五节脚注）。
 > 这 5 个和下面那套"别人家的"严格分开，互不影响。
 
-### 2）Matt Pocock 技能集（25 个，中英双语，来自社区）
-中文版优秀仓库：git@github.com:vinvcn/mattpocock-skills-zh-CN.git
+### 2）Matt Pocock 技能集（38 个，简体中文，来自社区）
+中文版仓库：git@github.com:vinvcn/mattpocock-skills-zh-CN.git（同步基线 v1.3.2）
 
 这一套来自 Matt Pocock 开源的 `skills` 合集，覆盖**写代码、审代码、做架构、管 issue、教学**等场景。
-我们做了**双语**：每个技能都有**英文原版**和**中文翻译版**两份。
+共 38 个技能，全部为简体中文本地化版本；**技能名、命令、标签、文件路径与上游保持一致，不加 `-zh` 后缀**，以免破坏技能之间的互相调用和逐字契约。
 
-- 英文版：用原名，例如 `grill-me`、`to-spec`
-- 中文版：名字后面加 `-zh`，例如 `grill-me-zh`、`to-spec-zh`（加后缀是为了不让中英文"撞名"）
+- 正式技能 27 个：`engineering/` 20 个 + `productivity/` 7 个
+- 实验性技能 7 个（`in-progress/`，beta，可能随时变更）：`chief-of-staff`、`claude-handoff`、`loop-me`、`setup-ts-deep-modules`、`writing-beats`、`writing-fragments`、`writing-shape`
+- 低频工具 4 个（`misc/`）：`git-guardrails-claude-code`、`migrate-to-shoehorn`、`scaffold-exercises`、`setup-pre-commit`
 
-另外还配了 **2 个"路由技能"**（相当于导航地图，见第四节），帮你在 25 个里快速挑对的那个。
+导航技能用 `ask-matt`（见第四节），上游不再提供独立的 menu 技能。
 
-> **仓库技能总数 57 个** = 你的 5 个（4 个原创 + 1 个引入整合）+ Matt 的 25 个 × 2 种语言 + 2 个路由技能。
+> **仓库技能总数 43 个** = 你的 5 个（4 个原创 + 1 个引入整合）+ Matt 中文技能 38 个。
 
 ---
 
@@ -83,12 +84,11 @@ cp -r skills/* ~/.workbuddy/skills/
 
 **方式 B：只装一部分（更轻量）**
 
-如果你只想用中文版 + 导航，可以只复制这几个：
+如果你只想用 Matt 技能 + 导航，可以只复制这几个：
 
 ```bash
-# 只装中文技能 + 中文路由（示例，可自己挑）
-cp -r skills/*-zh "$HOME/.workbuddy/skills/"
-cp -r skills/mattpocock-menu-zh "$HOME/.workbuddy/skills/"
+# 只装 Matt 技能（示例，可自己挑）
+cp -r skills/ask-matt skills/grill-me skills/to-spec skills/to-tickets "$HOME/.workbuddy/skills/"
 # 别忘了你自己的技能
 cp -r skills/extended-thinking "$HOME/.workbuddy/skills/"
 cp -r skills/vs-dep "$HOME/.workbuddy/skills/"
@@ -97,7 +97,7 @@ cp -r skills/ydfc "$HOME/.workbuddy/skills/"
 cp -r skills/ub-mode "$HOME/.workbuddy/skills/"
 ```
 
-> 注意：中文技能名字带 `-zh`，**别把英文同名版也塞进去重复装**，选一种语言即可，除非你中英文都想留着对照。
+> 注意：Matt 技能与上游英文版**同名**，如果你另外装过 `mattpocock/skills` 英文原版，同机并存会撞名，二选一。
 >
 > `general-fast-vue` 带五个 Python 闸门脚本，想用它们需要本机有 Python；不用脚本也不影响 AI 加载技能本身。
 
@@ -122,25 +122,25 @@ cp -r skills/ub-mode "$HOME/.workbuddy/skills/"
 这类技能必须你**主动叫名字**才会用。怎么叫？在 WorkBuddy 里输入斜杠 + 技能名：
 
 ```
-/grill-me-zh
+/grill-me
 ```
 
-或者自然语言也行："用一下 grill-me-zh 技能"。
+或者自然语言也行："用一下 grill-me 技能"。
 
-> 25 个里光"召唤型"就有 14 个，全背下来不现实。**解决办法：装那个"路由技能"当导航。**
+> 38 个里"召唤型"有 23 个，全背下来不现实。**解决办法：用 `ask-matt` 当导航。**
 
-### 强烈推荐：装一个"路由技能"当导航
+### 强烈推荐：用 `ask-matt` 当导航
 
-仓库里有两个叫 `mattpocock-menu`（英文）/ `mattpocock-menu-zh`（中文）的技能，它就是**技能地图**：
+`ask-matt` 就是**技能地图**：
 
 - 你**只记它一个名字**即可。
 - 遇到场景不知道用哪个，直接问它："我要做 X，该用哪个技能？"
-- 它会从 25 个里挑出**唯一最合适**的那个，并告诉你该怎么叫它。
+- 它会从 38 个里挑出**唯一最合适**的那个，并告诉你该怎么叫它。
 
 **新手最小配置（记 3 个就够用）：**
-1. `mattpocock-menu-zh` —— 导航，问它"用哪个"
-2. `grill-me-zh` —— 拷问/打磨你的想法方案
-3. `to-spec-zh` + `to-tickets-zh` —— 把讨论成果变成开发规格与工单
+1. `ask-matt` —— 导航，问它"用哪个"
+2. `grill-me` —— 拷问/打磨你的想法方案
+3. `to-spec` + `to-tickets` —— 把讨论成果变成开发规格与工单
 
 其余的，等真实场景撞上了，问导航技能就知道用哪个了。
 
@@ -160,40 +160,53 @@ cp -r skills/ub-mode "$HOME/.workbuddy/skills/"
 
 > `ub-mode` 是**引入并裁剪整合**的社区规则集（源自 [@poteto](https://github.com/poteto) 的 `poteto-mode`/`pstack`，配套工具为 [unclebob/crapper](https://github.com/unclebob/crapper)、[dryer](https://github.com/unclebob/dryer)、[mutator](https://github.com/unclebob/mutator)），仓库内保留其 MIT LICENSE（版权归 Robert C. Martin）。
 
-### Matt Pocock 技能集 · 自动触发（11 个，场景对上 AI 自己跑）
+### Matt Pocock 技能集 · 自动触发（15 个，场景对上 AI 自己跑）
 
-| 英文 | 中文(-zh) | 一句话用途 |
-|------|-----------|------------|
-| `code-review` | `code-review-zh` | 对代码改动做评审 |
-| `codebase-design` | `codebase-design-zh` | 用"深/浅模块"思路做架构设计 |
-| `diagnosing-bugs` | `diagnosing-bugs-zh` | 系统化诊断 bug |
-| `domain-modeling` | `domain-modeling-zh` | 边设计边打磨领域词汇表与决策记录(ADR) |
-| `grilling` | `grilling-zh` | 访谈引擎（被 grill 系列技能内部调用） |
-| `prototype` | `prototype-zh` | 生成可点按的逻辑/UI 原型 |
-| `research` | `research-zh` | 派子代理做外部资料调研 |
-| `resolving-merge-conflicts` | `resolving-merge-conflicts-zh` | 解决 Git 合并冲突 |
-| `tdd` | `tdd-zh` | 测试驱动开发 |
-| `wizard` | `wizard-zh` | 生成一步步引导填密钥/配置的交互向导 |
-| `writing-for-agents` | `writing-for-agents-zh` | 给 agent 写文档的写法规范（被其它技能参考） |
+| 技能名 | 一句话用途 |
+|--------|------------|
+| `code-review` | 对一段改动做双轴评审（编码规范 + 来源规格） |
+| `codebase-design` | 深模块 / 接口 / 接缝设计的共享词汇 |
+| `diagnosing-bugs` | 系统化诊断难缠 bug 与性能回退 |
+| `domain-modeling` | 边设计边打磨领域术语与 ADR |
+| `grilling` | 追问引擎（被 grill 系列技能内部调用） |
+| `pr` | 起草 / 改写 PR 正文 |
+| `prototype` | 生成一次性逻辑或 UI 原型来回答设计问题 |
+| `research` | 派子代理查一手资料并落成仓库里的 Markdown |
+| `tdd` | 测试驱动开发 |
+| `wizard` | 生成引导人填密钥 / 配置的交互式 bash 向导 |
+| `writing-for-agents` | 给 agent 写文档的写法规范 |
+| `git-guardrails-claude-code` | 给 Claude Code 装危险 git 命令护栏 hooks（`misc/` 低频） |
+| `migrate-to-shoehorn` | 把测试里的 `as` 断言迁到 shoehorn（`misc/` 低频） |
+| `scaffold-exercises` | 生成练习目录骨架并过 lint（`misc/` 低频） |
+| `setup-pre-commit` | 配 Husky + lint-staged + 类型检查 + 测试（`misc/` 低频） |
 
-### Matt Pocock 技能集 · 手动召唤（14 个，必须点名 `/技能名` 才跑）
+### Matt Pocock 技能集 · 手动召唤（23 个，必须点名 `/技能名` 才跑）
 
-| 英文 | 中文(-zh) | 一句话用途 | 你可以直接说的触发短语 |
-|------|-----------|------------|------------------------|
-| `ask-matt` | `ask-matt-zh` | 向 Matt Pocock "请教" TS/工程风格问题 | "ask matt…"、"Matt 会怎么写 X" |
-| `grill-me` | `grill-me-zh` | 让 AI 严酷拷问你的想法/方案，找漏洞 | "拷问我"、"挑战一下我的方案" |
-| `grill-with-docs` | `grill-with-docs-zh` | 同 grill-me，但边问边产出 ADR 和词汇表 | "边问边出文档" |
-| `handoff` | `handoff-zh` | 把当前对话压缩成交接文档，给另一个 agent | "写个交接文档" |
-| `implement` | `implement-zh` | 按规格说明或工单去实现代码 | "按这个 spec 实现" |
-| `improve-codebase-architecture` | `improve-codebase-architecture-zh` | 扫描架构、找"加深模块"机会，出可视化报告 | "审查架构"、"找出浅模块" |
-| `setup-matt-pocock-skills` | `setup-matt-pocock-skills-zh` | 为仓库一键配置工程类技能（issue 追踪器等） | "初始化技能配置" |
-| `teach` | `teach-zh` | 多会话教学：系统地教你一个技能/概念 | "teach me X"、"教我…" |
-| `to-questionnaire` | `to-questionnaire-zh` | 把答不清的决策变成问卷发给别人填 | "做个问卷" |
-| `to-spec` | `to-spec-zh` | 把当前对话直接整理成规格说明 | "出个 spec"、"to spec" |
-| `to-tickets` | `to-tickets-zh` | 把计划/规格拆成可独立开发的工单 | "拆工单"、"to tickets" |
-| `triage` | `triage-zh` | 给 issues / 外部 PR 分诊（分类、核实、写简报） | "triage"、"分诊 #42" |
-| `wait-what` | `wait-what-zh` | 用大白话重述你没看懂的那条消息 | "没看懂，重说" |
-| `wayfinder` | `wayfinder-zh` | 把超大块工作规划成"决策工单地图"，逐个击破 | "规划这个大任务" |
+| 技能名 | 一句话用途 | 你可以直接说的触发短语 |
+|--------|------------|------------------------|
+| `ask-matt` | 路由器：按当前处境推荐该用哪个技能或流程 | "该用哪个技能"、"接下来做什么" |
+| `grill-me` | 严酷拷问你的想法 / 方案，找漏洞 | "拷问我"、"挑战一下我的方案" |
+| `grill-with-docs` | 同 grill-me，但边问边产出 ADR 和词汇表 | "边问边出文档" |
+| `handoff` | 把当前对话压缩成交接文档，给另一个 agent | "写个交接文档" |
+| `implement` | 按规格说明或工单去实现代码 | "按这个 spec 实现" |
+| `implement-spec` | 按 spec 拆 ticket，并行派 implementer 子代理实现 | "按这份 spec 实现全部" |
+| `improve-codebase-architecture` | 扫描架构、找"加深模块"机会，出可视化报告 | "审查架构"、"找出浅模块" |
+| `retro` | 对一个会话 / 项目做复盘，沉淀可复用经验 | "复盘一下" |
+| `setup-matt-pocock-skills` | 为仓库一键配置 issue tracker、分诊标签与领域文档 | "初始化技能配置" |
+| `teach` | 多会话教学：系统地教你一个技能 / 概念 | "teach me X"、"教我…" |
+| `to-spec` | 把当前对话直接整理成规格说明 | "出个 spec"、"to spec" |
+| `to-tickets` | 把计划 / 规格拆成可独立开发的示踪子弹工单 | "拆工单"、"to tickets" |
+| `triage` | 给 issues / 外部 PR 分诊（分类、核实、写简报） | "分诊 #42" |
+| `wayfinder` | 把超大块工作规划成"决策工单地图"，逐个击破 | "规划这个大任务" |
+| `to-questionnaire` | 把答不清的决策变成问卷发给别人填 | "做个问卷" |
+| `wait-what` | 用大白话重述你没看懂的那条消息 | "没看懂，重说" |
+| `chief-of-staff` | 幕僚长：编排多个子代理 + 用 wiki 记住跨会话经验（beta） | "帮我打理这件事" |
+| `claude-handoff` | 把当前对话交给新的后台 Claude 会话接手（beta，需 `claude --bg`） | "交给后台接着做" |
+| `loop-me` | 多轮 grilling，把你身上的工作流打磨成可执行的 workflow spec（beta） | "帮我把这个流程问清楚" |
+| `setup-ts-deep-modules` | 给 TS 仓库接 dependency-cruiser，强制"深模块"边界（beta） | "给这个仓库配深模块检查" |
+| `writing-beats` | 把素材塑造成一段"节拍旅程"式的文章（beta） | "按节拍写这篇文章" |
+| `writing-fragments` | 从 grilling 中收集写作碎片，追加到一份素材文档（beta） | "帮我收集写作素材" |
+| `writing-shape` | 逐段塑形文章，并论证每一段的格式选择（beta） | "把这份素材改成文章" |
 
 ---
 
@@ -208,11 +221,11 @@ skills-collection/
     ├── general-fast-vue/     # 【你自己的】FastAPI+Vue3 单端口全栈架构规约（含 5 个闸门脚本）
     ├── ydfc/                 # 【你自己的】影刀编码模块函数生成器（跨平台，含门禁/自检脚本与规则参考）
     ├── ub-mode/              # 【你引入整合的】改代码纪律约束（三段式 + 三道质量闸门，含 LICENSE）
-    ├── grill-me/             # Matt 技能 · 英文
-    ├── grill-me-zh/          # Matt 技能 · 中文（带 -zh 后缀）
-    ├── ...（其余 23 个 Matt 技能的中英两套）
-    ├── mattpocock-menu/      # 导航技能 · 英文
-    ├── mattpocock-menu-zh/   # 导航技能 · 中文
+    ├── ask-matt/             # Matt 技能 · 中文（导航）
+    ├── code-review/          # Matt 技能 · 中文（engineering 20 个 + productivity 7 个）
+    ├── ...                   # 其余 Matt 正式技能，名字与上游一致、无 -zh 后缀
+    ├── chief-of-staff/       # Matt 实验性技能（in-progress 7 个，beta）
+    ├── git-guardrails-claude-code/  # Matt 低频工具（misc 4 个）
     └── （每个技能文件夹里：SKILL.md + 可能的 references/ 等）
 ```
 
@@ -226,8 +239,8 @@ skills-collection/
 
 ## 七、常见问题（FAQ）
 
-**Q1：英文版和中文版要都装吗？**
-不用。二选一即可：想看原文装英文（原名），想看中文装 `-zh` 版。都装也行，只是占地方、名字不同不会冲突。
+**Q1：还需要英文原版吗？**
+本仓库只保留简体中文版。想用英文原版请装上游 [`mattpocock/skills`](https://github.com/mattpocock/skills)；两套技能**同名**，同机并存会撞名，二选一。
 
 **Q2：装完没反应 / AI 不用这个技能？**
 - 召唤型技能：确认你是**用 `/技能名` 点名**叫它的（自动型才不需要）。
@@ -235,19 +248,19 @@ skills-collection/
 - 确认文件夹直接放在 `~/.workbuddy/skills/` 下，且里面有 `SKILL.md`。
 
 **Q3：技能之间会打架吗？**
-不会。你自己的 `extended-thinking` / `vs-dep` / `general-fast-vue` / `ydfc` / `ub-mode` 和 Matt 那套名字完全不同；Matt 的中英文靠 `-zh` 区分。WorkBuddy 按"文件夹名 + SKILL.md 里的 name 字段"识别，互不影响。
+不会。你自己的 `extended-thinking` / `vs-dep` / `general-fast-vue` / `ydfc` / `ub-mode` 和 Matt 那套名字完全不同。WorkBuddy 按"文件夹名 + SKILL.md 里的 name 字段"识别，互不影响。
 
 > 唯一的"分工协作"是：`general-fast-vue` 与 Matt 的 `fullstack-vf` 都覆盖全栈搭建。
 > 两者已互相标注了适用边界——**纯 CRUD 后台**用 `fullstack-vf`，**数据批处理进指标库**用 `general-fast-vue`（它还额外含读写分层与云端部署裁决）。
 
 **Q4：我想只装其中几个，怎么挑？**
-看上面"完整技能清单"，挑你用得上的那几行，把对应文件夹复制进 `skills/` 即可。新手从"导航 + grill-me-zh + to-spec-zh"三件套起步最稳。
+看上面"完整技能清单"，挑你用得上的那几行，把对应文件夹复制进 `skills/` 即可。新手从"`ask-matt` + `grill-me` + `to-spec`"三件套起步最稳。
 
 **Q5：怎么更新到最新版？**
 回到这个仓库 `git pull` 拉最新，再把 `skills/` 重新复制覆盖到本机 `skills/` 目录即可。
 
 ---
 
-> 仓库维护约定：你自己的原创技能放 `skills/` 根下独立文件夹；引入整合的社区技能（如 `ub-mode`）同样独立成文件夹，并**保留其原始 LICENSE 与来源说明**；第三方（如 Matt Pocock）技能保持原名，中文翻译统一加 `-zh` 后缀，避免与英文版重名。
+> 仓库维护约定：你自己的原创技能放 `skills/` 根下独立文件夹；引入整合的社区技能（如 `ub-mode`）同样独立成文件夹，并**保留其原始 LICENSE 与来源说明**；第三方（如 Matt Pocock）技能保持上游原名与目录结构，不额外加语言后缀，以免破坏技能间的互相调用与逐字契约。
 >
 > 约定提醒：**新增技能时记得同步更新本 README**（第二节的自研技能表、第五节的完整清单表、第六节的目录结构图，以及第三节方式 B 的安装命令），否则换机器重装时会漏掉新技能、总数也对不上。
